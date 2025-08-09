@@ -1,47 +1,73 @@
-PicVerse is a web application that provides a platform for users to share pictures and connect with friends. The app includes a user authentication system with separate pages for sign-up, sign-in, and a user dashboard.
+***
+
+🔐 Static Authentication Web Application
+
+This repository contains a static front-end authentication system built using **HTML, CSS, and JavaScript**. It was created as part of an internship task to demonstrate clean UI design, responsive layout, and essential authentication pages—without using any external frameworks or design tools.
 
 ***
 
-## Setup Instructions
+📁 Project Screens
 
-To get the application running, you'll need a live server to host the files. Follow these steps:
-
-1.  **Save the files**: Save the provided `index.html`, `dashboard.html`, and `register.html` files into a project folder.
-2.  **Create CSS folder**: Inside the project folder, create a new folder named `css`.
-3.  **Download CSS files**: You will need to get the CSS files for this project. They are not provided, but the HTML files link to `css/style.css` and `css/dashboard_style.css`.
-4.  **Install a live server**: Use a tool like the **Live Server** extension in VS Code to host the project.
-5.  **Run the application**: Right-click on `index.html` and select the option to open with your live server.
-
-The application will open in your browser, starting with the login page.
+* 📝 **Register Page** – For new user sign-up.
+* 🔐 **Login Page** – For user login.
+* 🎉 **Dashboard / Welcome Page** – Post-login landing screen.
+* ❓ **Forgot Password Page** – For password recovery.
+* 🔁 **Change Password Page** – For setting a new password.
 
 ***
 
-## Authentication Flow
+🧰 Tech Stack
 
-The authentication process for PicVerse is a two-step process. First, you must create a new account, and then you can use those credentials to log in.
-
-### 1. Registration (Sign Up) 📝
-To create a new account, go to the **Sign Up** page, accessible via the navigation bar or a link on the login page.
-* The registration form requires a **username**, **email**, and **password**.
-* The `register.html` file sends the registration data to the following API endpoint: `https://os-project-server.vercel.app/auth/newuser` using a **POST** request.
-* A successful registration will display an alert and redirect you to the login page (`index.html`).
-
-### 2. Login (Sign In) 🚪
-Once you have successfully registered, you can log in.
-* On the **Sign In** page, enter the **username** and **password** you used during registration.
-* The `index.html` file sends this data to the following API endpoint: `https://os-project-server.vercel.app/auth/existinguser` using a **POST** request.
-* If the credentials are correct, the server returns an authentication token.
-* The application stores this **token** in the browser's `localStorage` and then redirects you to the user **dashboard** (`dashboard.html`).
-
-The user dashboard (`dashboard.html`) checks for the presence of this token. If the token is missing, it will redirect you back to the login page, ensuring that only authenticated users can access the dashboard.
+* **HTML5**
+* **CSS3**
+* **Vanilla JavaScript**
+* **Vercel** – for live deployment
+* **GitHub** – for version control
 
 ***
 
-## How to Test the App
+🌐 Live Demo
 
-1.  **Start at the Login Page**: Open `index.html` with your live server. Since you haven't registered yet, you can't log in.
-2.  **Navigate to Registration**: Click the **"Register"** link to go to `register.html`.
-3.  **Create an Account**: Fill out the registration form with a **username**, **email**, and **password**. Click **"Register"**. You should see an alert that the registration was successful, and you'll be redirected to the login page.
-4.  **Log In**: Use the **username** and **password** you just created to log in. Click **"Login"**.
-5.  **View the Dashboard**: A successful login will take you to the `dashboard.html` page, where you'll see a welcome message with your username and a shortened version of your authentication token.
-6.  **Log Out**: Click the **"Sign Out"** button to clear the token from `localStorage` and return to the login page.
+🔗 [Vercel link](https://static-authentication-webapp-with-a.vercel.app/)
+
+***
+
+📦 Repository
+
+📂 [Github Repo](https://github.com/GhulamAbbas200/Static-Authentication-Webapp---with-API-intergrated)
+
+***
+
+🎨 Design
+
+No external Figma design was used. All layouts and styles were custom-designed from scratch.
+
+***
+
+📌 How to Run Locally
+
+To run this project locally, you will need to host it with a live server.
+
+1.  **Save the files**: Place the provided `index.html`, `dashboard.html`, and `register.html` files into a project folder.
+2.  **Create the CSS folder**: Inside your project folder, create a new folder named `css`. The application uses `style.css` and `dashboard_style.css` which are linked in the HTML files.
+3.  **Use a live server**: Use a tool like the **Live Server** extension for VS Code to host the project.
+4.  **Run**: Right-click on `index.html` and select the option to open with your live server to begin.
+
+***
+
+### Authentication Flow and Testing
+
+The authentication process requires two steps: registration followed by login.
+
+#### 1. Register a new user 📝
+* Start on the login page and click the **"Register"** link to navigate to the registration page (`register.html`).
+* Fill in the **username, email, and password** fields.
+* Click the **"Register"** button to create your account.
+* The page will display an alert on successful registration and redirect you to the login page (`index.html`).
+
+#### 2. Log in with your new user 🚪
+* On the login page, enter the **username and password** you just created.
+* Click the **"Login"** button.
+* Upon successful authentication, a token will be stored in your browser's `localStorage`, and you will be redirected to the user **dashboard** (`dashboard.html`).
+* The dashboard page displays a welcome message and a shortened version of your authentication token.
+* To end your session, click **"Sign Out"**, which will remove the token and return you to the login page.
