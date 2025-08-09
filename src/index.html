@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">PicVerse</a>
+        <nav class="navbar">
+            <a href="a">Home</a>
+            <a href="a">About</a>
+            <a href="a">Contact</a>
+            <a href="pages/register.html">SignUp</a>
+            <button class="SignInbt">SignIn</button>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="bi bi-list"></i>
+        </button>
+    </header>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="pages/register.html">SignUp</a>
+        <button class="SignInbt">SignIn</button>
+    </nav>
+
+    <section class="section">
+        <div class="left-side">
+            <div class="welcome-text">
+                <h1>Welcome to PicVerse</h1>
+                <p>The best platform to share your pictures and connect with friends.</p>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="logreg-box">
+                <div class="form-box login">
+                    <div class="logreg-title">
+                        <h2>Sign In</h2>
+                        <p>Please put your credentials to login</p>
+                    </div>
+                    <form id="loginForm">
+                        <div class="input-box">
+                            <span class="icon"><i class="bi bi-person"></i></span>
+                            <input type="text" id="username" required />
+                            <label>Username</label>
+                        </div>
+                        <div class="input-box">
+                            <span class="icon"><i class="bi bi-lock"></i></span>
+                            <input type="password" id="password" required />
+                            <label>Password</label>
+                        </div>
+                        <div id="error-message" style="color:red; font-size:0.9rem; margin-bottom:8px;"></div>
+                        <div class="remember-forget">
+                            <label><input type="checkbox" />Remember me</label>
+                            <a href="pages/forgot-password.html">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                        <div class="logreg-link">
+                            <p>New? SignUp Today! <a href="pages/register.html" class="register-link">Register</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="other-login-options">
+                <a href="#"><i class="bi bi-google"></i>
+                    <span>Login with Google</span>
+                </a>
+                <a href="#"><i class="bi bi-facebook"></i>
+                    <span>Login with Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                window.location.href = 'pages/dashboard.html';
+            }
+
+            const loginForm = document.getElementById('loginForm');
+            const errorMessage = document.getElementById('error-message');
+
+            if (loginForm) {
+                const usernameInput = document.getElementById('username');
+                const passwordInput = document.getElementById('password');
+                const apiBaseUrl = 'https://os-project-server.vercel.app';
+
+                loginForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const username = usernameInput.value.trim();
+                    const password = passwordInput.value.trim();
+
+                    errorMessage.textContent = '';
+
+                    try {
+                        const response = await fetch(`${apiBaseUrl}/auth/existinguser`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ username, password })
+                        });
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.error || 'Authentication failed.');
+                        }
+
+                        const data = await response.json();
+                        const token = data.token;
+
+                        localStorage.setItem('authToken', token);
+                        window.location.href = 'pages/dashboard.html';
+                    } catch (error) {
+                        console.error('Login error:', error);
+                        errorMessage.textContent = error.message;
+                    }
+                });
+            } else {
+                console.error('Login form with id="loginForm" not found.');
+            }
+
+            // Mobile navigation setup (unchanged)
+            class MobileNavigation {
+                constructor(btn, menu, overlay) {
+                    this.mobileMenuBtn = btn;
+                    this.mobileMenu = menu;
+                    this.mobileMenuOverlay = overlay;
+                    this.isMenuOpen = false;
+
+                    this.mobileMenuBtn.addEventListener('click', () => {
+                        this.isMenuOpen ? this.closeMenu() : this.openMenu();
+                    });
+                    this.mobileMenuOverlay.addEventListener('click', () => this.closeMenu());
+                    window.addEventListener('resize', () => this.handleResize());
+                }
+
+                openMenu() {
+                    this.isMenuOpen = true;
+                    this.mobileMenu.classList.add('active');
+                    this.mobileMenuOverlay.classList.add('active');
+                    this.mobileMenuBtn.innerHTML = '<i class="bi bi-x"></i>';
+                    document.body.style.overflow = 'hidden';
+                }
+
+                closeMenu() {
+                    this.isMenuOpen = false;
+                    this.mobileMenu.classList.remove('active');
+                    this.mobileMenuOverlay.classList.remove('active');
+                    this.mobileMenuBtn.innerHTML = '<i class="bi bi-list"></i>';
+                    document.body.style.overflow = '';
+                }
+
+                handleResize() {
+                    if (window.innerWidth > 768 && this.isMenuOpen) {
+                        this.closeMenu();
+                    }
+                }
+            }
+
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('mobileMenuOverlay');
+
+            if (btn && menu && overlay) {
+                new MobileNavigation(btn, menu, overlay);
+            } else {
+                console.warn('Mobile menu elements not found — skipping navigation setup.');
+            }
+
+            function isMobileDevice() {
+                return window.innerWidth <= 768;
+            }
+
+            function handleOrientationChange() {
+                if (isMobileDevice()) {
+                    const nav = document.querySelector('.mobile-menu');
+                    if (nav && nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        document.querySelector('.mobile-menu-overlay').classList.remove('active');
+                        document.querySelector('.mobile-menu-btn').innerHTML = '<i class="bi bi-list"></i>';
+                        document.body.style.overflow = '';
+                    }
+                }
+            }
+
+            window.addEventListener('orientationchange', handleOrientationChange);
+            window.addEventListener('resize', handleOrientationChange);
+        });
+    </script>
+</body>
+</html>

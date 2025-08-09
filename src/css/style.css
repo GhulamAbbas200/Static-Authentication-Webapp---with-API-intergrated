@@ -1,0 +1,631 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 5%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: clamp(24px, 4vw, 32px);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.navbar a{
+    font-size: clamp(14px, 2.5vw, 18px);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar .SignInbt{
+    position: relative;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: clamp(15px, 2.5vw, 19px);
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.navbar .SignInbt::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    background: #fff;
+    opacity: 0.85;
+}
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    padding: 80px 30px 30px;
+    transition: right 0.3s ease;
+    z-index: 999;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.mobile-menu a:hover,
+.mobile-menu button:hover {
+    color: #ddd;
+}
+
+.mobile-menu .SignInbt {
+    position: relative;
+    border-bottom: none;
+    margin-top: 10px;
+}
+
+.mobile-menu .SignInbt::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: -4px;
+    height: 2px;
+    background: #fff;
+    opacity: 0.85;
+}
+
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.section {
+    display: flex;
+    align-items: center;        
+    justify-content: space-between;
+    padding: 80px 5% 40px;
+    min-height: 100vh;
+    background: url('../images/Background2.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.section1{
+    min-height: 100vh;
+    background: url('../images/Background.jpg') no-repeat center/cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 5%;
+}
+
+.wrapper{
+    position: fixed;
+    top: 50%;
+    right: 2%;
+    transform: translateY(-50%);
+    width: min(450px, 90vw);
+    max-width: 450px;
+    background: transparent;
+    backdrop-filter: blur(15px);
+    box-shadow: -1px 0 10px rgba(0, 0, 0, .2);
+    border-left: 2px solid rgba(255, 255, 255, .1);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: clamp(20px, 4vw, 40px);
+    border-radius: 12px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.wrapper1{
+    position: relative;               
+    margin: 90px auto 0;              
+    width: min(450px, 90vw);
+    max-width: 450px;
+    background: transparent;
+    backdrop-filter: blur(15px);       
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    border: 2px solid rgba(255, 255, 255, .1);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(15px, 3vw, 20px);
+    z-index: 100;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.wrapper .logreg-box {
+    width: 100%;
+}
+
+.logreg-box .logreg-title{
+    text-align: center;
+    margin-bottom: clamp(20px, 5vw, 40px);
+    color: #fff;
+}
+
+.logreg-title h2{
+    font-size: clamp(24px, 5vw, 32px);
+}
+
+.logreg-title .p{
+    font-size: clamp(12px, 2vw, 14px);
+    font-weight: 500;
+}
+
+.logreg-box .input-box {
+    position: relative;
+    width: 100%;
+    height: clamp(40px, 8vw, 50px);
+    background: transparent;
+    margin: clamp(15px, 4vw, 30px) 0;
+    border-bottom: 2px solid #fff;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: #fff;
+    font-weight: 500;
+    padding: 10px 25px 0 0;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: -5px;
+    font-size: clamp(10px, 2vw, 12px);
+    color: #ddd;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: #fff;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s;
+    transform: translateY(-50%);
+}
+
+.input-box .icon{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: clamp(16px, 3vw, 19px);
+    color: #fff;
+}
+
+.logreg-box .remember-forget {
+    font-size: clamp(12px, 2vw, 14.5px);
+    color: #fff;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.remember-forgot label input{
+    accent-color: #ffffff;
+    margin-right: 5px;
+}
+
+.remember-forget a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forget a:hover{
+    text-decoration: underline;
+}
+
+.logreg-box .btn{
+    width: 100%;
+    height: clamp(38px, 7vw, 45px);
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+    cursor: pointer;
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: #222;
+    font-weight: 600;
+    padding: 0 12px;
+    transition: all 0.3s ease;
+}
+
+.logreg-box .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+}
+
+.logreg-box .logreg-link{
+    font-size: clamp(12px, 2vw, 14.5px);
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 15px;
+}
+
+.logreg-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.logreg-link p a:hover{
+    text-decoration: underline;
+}
+
+.other-login-options{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.other-login-options a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: clamp(40px, 8vw, 50px);
+    background-color: transparent;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    border-radius: 40px;
+    color: #fff;
+    text-decoration: none;
+    padding: 0 clamp(15px, 3vw, 50px);
+    transition: all 0.3s ease;
+}
+
+.other-login-options a:hover{
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+}
+
+.other-login-options a i{
+    font-size: clamp(18px, 3vw, 22px);
+    margin: 0 clamp(5px, 1vw, 8px) 0;
+}
+
+.other-login-options a span{
+    font-size: clamp(13px, 2.5vw, 16px);
+    font-weight: 500;
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-right: clamp(20px, 5vw, 40px);
+    color: #fff;
+    max-width: min(400px, 50vw);
+    min-height: 300px;
+}
+
+.left-side h1 {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.left-side p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* ENHANCED RESPONSIVE STYLES */
+@media (max-width: 1200px) {
+    .section {
+        padding: 70px 4% 30px;
+    }
+    
+    .wrapper {
+        right: 1%;
+        width: min(400px, 85vw);
+    }
+    
+    .left-side {
+        max-width: min(350px, 45vw);
+    }
+}
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 15px 4%;
+    }
+    
+    .section {
+        padding: 60px 4% 20px;
+        gap: 20px;
+    }
+    
+    .wrapper {
+        width: min(380px, 80vw);
+        padding: clamp(20px, 3vw, 30px);
+    }
+    
+    .left-side {
+        max-width: min(320px, 40vw);
+        padding-right: clamp(15px, 3vw, 25px);
+    }
+}
+@media (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none !important; 
+    }
+    
+    .navbar {
+        display: flex !important; 
+    }
+    
+    .mobile-menu,
+    .mobile-menu-overlay {
+        display: none; 
+    }
+}
+@media (max-width: 768px) {
+    .header {
+        padding: 15px 3%;
+    }
+    
+    .navbar {
+        display: none !important;
+    }
+    .mobile-menu-btn {
+        display: block !important;
+    }
+    .section {
+        flex-direction: column !important;
+        padding: 100px 3% 20px !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 25px !important;
+    }
+    
+    .wrapper {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: min(100%, 380px) !important;
+        margin: 20px auto 0 !important;
+        border-left: none !important;
+        border: 2px solid rgba(255, 255, 255, .1) !important;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .3) !important;
+        padding: 25px !important;
+    }
+    
+    .left-side {
+        max-width: 100% !important;
+        padding-right: 0 !important;
+        align-items: center !important;
+        text-align: center !important;
+        margin-bottom: 20px;
+    }
+    
+    .logreg-box .input-box {
+        margin: 20px 0 !important;
+        height: 45px !important;
+    }
+     .input-box input {
+        font-size: 16px !important; /* Prevents zoom on iOS */
+        padding: 12px 30px 0 0 !important;
+    }
+
+    .input-box label {
+        font-size: 15px !important;
+    }
+
+    .input-box .icon {
+        font-size: 18px !important;
+        right: 5px !important;
+    }
+
+    .logreg-box .btn {
+        height: 45px !important;
+        font-size: 16px !important;
+        margin: 20px 0 !important;
+    }
+
+    .remember-forget {
+        margin: 10px 0 20px !important;
+        font-size: 14px !important;
+    }
+
+    .other-login-options a {
+        height: 45px !important;
+        font-size: 15px !important;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 12px 3%;
+    }
+    
+    .section {
+        padding: 100px 3% 15px;
+        gap: 20px;
+    }
+    
+    .wrapper {
+        width: min(100%, 350px);
+        padding: clamp(15px, 4vw, 25px);
+        border-radius: 8px;
+    }
+    
+    .other-login-options a {
+        padding: 0 clamp(10px, 2vw, 20px);
+    }
+    
+    .remember-forget {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 2%;
+    }
+    .mobile-menu {
+        width: 100%;
+        padding: 70px 20px 20px;
+    }
+    .section {
+        padding: 90px 2% 15px !important;
+        gap: 20px !important;
+    }
+    
+    .wrapper {
+        width: min(100%, 320px) !important;
+        padding: 20px !important;
+        margin: 15px auto 0 !important;
+    }
+    
+    .logreg-box .input-box {
+        margin: clamp(10px, 2.5vw, 15px) 0;
+    }
+    
+    .other-login-options {
+        gap: 8px;
+    }
+}
+
+@media (max-width: 320px) {
+    .wrapper {
+        width: 95% !important;
+        padding: 15px !important;
+    }
+    
+    .section {
+        padding: 80px 2% 10px;
+    }
+    
+    .other-login-options a {
+        padding: 12px 15px !important;
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 5px;
+    }
+    
+    .other-login-options a i {
+        margin: 0 !important;
+    }
+}
+
+/* Additional mobile-first improvements */
+@media (hover: hover) {
+    .navbar a:hover {
+        color: #ddd;
+        transition: color 0.3s ease;
+    }
+}
+
+/* Ensure touch targets are adequate */
+@media (max-width: 768px) {
+    .navbar a,
+    .navbar .SignInbt {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .logreg-box .btn,
+    .other-login-options a {
+        min-height: 44px;
+    }
+}
+
+/* Fix background attachment on mobile */
+@media (max-width: 768px) {
+    .section,
+    .section1 {
+        background-attachment: scroll;
+    }
+}
